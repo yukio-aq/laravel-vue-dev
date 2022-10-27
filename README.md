@@ -251,4 +251,4 @@ https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remo
 ~~~
 code {project-name/}
 ~~~
-と入力することでwsl経由で編集できる
+と入力することでwsl経由で編集できるので処理が速い
