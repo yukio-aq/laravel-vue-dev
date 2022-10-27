@@ -240,7 +240,7 @@ sail npm run build
 <br>
 
 
-以上で構築できたはず
+以上
 
 😀補足
 Windows ＆ VS CODE を使う場合<br>
