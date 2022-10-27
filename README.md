@@ -241,3 +241,13 @@ sail npm run build
 
 
 以上で構築できたはず
+
+😀補足
+Windows ＆ VS CODE を使う場合
+拡張機能のRemote Develpmentをインストール
+https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack
+インストール後、ターミナルにて
+~~~
+code {project-name/}
+~~~
+と入力することでwsl経由で編集できる
