@@ -243,9 +243,10 @@ sail npm run build
 以上で構築できたはず
 
 😀補足
-Windows ＆ VS CODE を使う場合
-拡張機能のRemote Develpmentをインストール
+Windows ＆ VS CODE を使う場合<br>
+拡張機能のRemote Develpmentをインストール<br>
 https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack
+<br>
 インストール後、ターミナルにて
 ~~~
 code {project-name/}
