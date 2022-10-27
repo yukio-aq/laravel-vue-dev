@@ -62,6 +62,7 @@ services:
             - 'host.docker.internal:host-gateway'
         ports:
             - '${APP_PORT:-80}:80'
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
         environment:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1
@@ -73,6 +74,10 @@ services:
             - sail
         depends_on:
             - mysql
+            - redis
+            - meilisearch
+            - mailhog
+            - selenium
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -86,10 +91,35 @@ services:
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
             - 'sail-mysql:/var/lib/mysql'
+            - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
         networks:
             - sail
         healthcheck:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+            retries: 3
+            timeout: 5s
+    redis:
+        image: 'redis:alpine'
+        ports:
+            - '${FORWARD_REDIS_PORT:-6379}:6379'
+        volumes:
+            - 'sail-redis:/data'
+        networks:
+            - sail
+        healthcheck:
+            test: ["CMD", "redis-cli", "ping"]
+            retries: 3
+            timeout: 5s
+    meilisearch:
+        image: 'getmeili/meilisearch:latest'
+        ports:
+            - '${FORWARD_MEILISEARCH_PORT:-7700}:7700'
+        volumes:
+            - 'sail-meilisearch:/meili_data'
+        networks:
+            - sail
+        healthcheck:
+            test: ["CMD", "wget", "--no-verbose", "--spider",  "http://localhost:7700/health"]
             retries: 3
             timeout: 5s
     mailhog:
@@ -97,6 +127,14 @@ services:
         ports:
             - '${FORWARD_MAILHOG_PORT:-1025}:1025'
             - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+        networks:
+            - sail
+    selenium:
+        image: 'selenium/standalone-chrome'
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        volumes:
+            - '/dev/shm:/dev/shm'
         networks:
             - sail
     phpmyadmin:
@@ -116,6 +154,10 @@ networks:
         driver: bridge
 volumes:
     sail-mysql:
+        driver: local
+    sail-redis:
+        driver: local
+    sail-meilisearch:
         driver: local
 
 ~~~
