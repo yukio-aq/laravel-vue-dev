@@ -9,18 +9,14 @@
 
     <title>{{ config('app.name', 'Laravel9-Vue3-SPA') }}</title>
 
-    <!-- Styles  -->
-    @vite(['resources/css/app.css'])
-
-    <!-- scripts -->
-    @vite('resources/js/app.js')
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <title>Laravel9-Vue3-SPA</title>
 </head>
 <body>
 
 <div id="app">
-    <example-component></example-component>
+    <header-component></header-component>
 </div>
 
 </body>
