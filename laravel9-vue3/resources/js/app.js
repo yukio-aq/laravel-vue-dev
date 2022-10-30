@@ -6,6 +6,7 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import router from "../router.js";
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -13,11 +14,13 @@ import { createApp } from 'vue';
  * to use in your application's views. An example is included for you.
  */
 
-const app = createApp({});
+const app = createApp({
+    components: {
+        HeaderComponent,
+    }
+});
 
-import ExampleComponent from './components/ExampleComponent.vue';
-import HeaderComponent from './components/HeaderComponent.vue';
-app.component('example-component', ExampleComponent);
+import HeaderComponent from "./components/HeaderComponent.vue";
 app.component('header-component', HeaderComponent);
 
 /**
@@ -38,4 +41,5 @@ app.component('header-component', HeaderComponent);
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
 
+app.use(router);
 app.mount('#app');
