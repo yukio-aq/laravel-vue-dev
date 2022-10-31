@@ -53,8 +53,8 @@ export default {
                   this.tasks = res.data;
           });
       },
-      deleteTask() {
-          axios.delete('/api/tasks' + id)
+      deleteTask(id) {
+          axios.delete('/api/tasks/' + id)
                .then((res) => {
                    this.getTasks()
                });
