@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import router from "../../router";
+
 export default {
     name: "TaskEditComponent",
     props: {
@@ -46,8 +48,8 @@ export default {
         },
         submit() {
             axios.put('/api/tasks/' + this.taskId, this.task)
-                 .then((res) => {
-                     this.$router.push({name: 'task.list'})
+                 .then(() => {
+                     router.push({name: 'task.list'});
                  });
         }
     },
