@@ -228,6 +228,8 @@ export default defineConfig({
 });
 ~~~
 
+laravel/ui,Vue-Routerの導入コマンドなども最初にsailとつけるだけ
+
 開発
 ~~~
 sail npm run dev
