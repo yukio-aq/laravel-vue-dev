@@ -14,14 +14,7 @@ import router from "../router.js";
  * to use in your application's views. An example is included for you.
  */
 
-const app = createApp({
-    components: {
-        HeaderComponent,
-    }
-});
-
-import HeaderComponent from "./components/HeaderComponent.vue";
-app.component('header-component', HeaderComponent);
+const app = createApp({});
 
 /**
  * The following block of code may be used to automatically register your
@@ -30,6 +23,10 @@ app.component('header-component', HeaderComponent);
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+
+import HeaderComponent from "./components/HeaderComponent.vue";
+app.component('header-component', HeaderComponent);
+
 
 // Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
 //     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
